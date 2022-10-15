@@ -12,6 +12,7 @@ class Topic(models.Model):
 class Room(models.Model):
     topic=models.ForeignKey(Topic,on_delete=models.SET_NULL ,null=True)
     host=models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
+    participants=models.ManyToManyField(User,related_name='participants',blank=True)
     name=models.CharField(max_length=255)
     description=models.TextField(null=True, blank=True)
     updated_on=models.DateTimeField(auto_now=True)
@@ -33,3 +34,6 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[0:50]
+
+    class Meta:
+        ordering=['-updated_on','created_on']

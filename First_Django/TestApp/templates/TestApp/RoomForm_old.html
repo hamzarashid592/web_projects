@@ -1,0 +1,30 @@
+{% extends 'Main.html' %} {% block content %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div>
+            <label for="">Topic</label>
+            <input required type="text" name="topic" list="topic_list" />
+            <datalist id="topic_list">
+                <select name="" id="room_topic">
+                    {% for topic in topics %}
+                    <option value="{{topic}}">{{topic}}</option>
+                    {% endfor %}
+                </select>
+            </datalist>
+        </div>
+        <div>
+            <label for="">Name</label>
+            {{form.name}}
+        </div>
+        <div>
+            <label for="">Description</label>
+            {{form.description}}
+        </div>
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+{% endblock content %}

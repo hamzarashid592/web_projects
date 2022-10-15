@@ -1,0 +1,28 @@
+{% extends 'Main.html' %} {% block content %}
+
+<style>
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+
+<div class="home-container">
+    <div>{% include 'TestApp/topic_component.html' %}</div>
+
+    <div>
+        <h1>Home Page</h1>
+
+        {% if request.user.is_authenticated %}
+        <h4>Hello {{request.user}}</h4>
+        {% endif %}
+        <p>Available Rooms {{room_count}}</p>
+
+        <a href="{% url 'create-room' %}">Create Room</a>
+        {% include 'TestApp/feed_component.html' %}
+    </div>
+
+    <div>{% include 'TestApp/activity_component.html' %}</div>
+</div>
+
+{% endblock content %}
